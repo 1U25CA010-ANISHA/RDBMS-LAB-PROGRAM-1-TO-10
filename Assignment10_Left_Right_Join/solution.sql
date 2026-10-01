@@ -1,13 +1,36 @@
-DROP DATABASE IF EXISTS CollegeDB;
-CREATE DATABASE CollegeDB;
-USE CollegeDB;
+use CollegeDB;
+CREATE TABLE Enrollment (
+    EnrollmentID INT PRIMARY KEY,
+    StudentID INT,
+    CourseID INT
+);
+DELETE FROM Course;
 
--- Create Course
+INSERT INTO Course
+(CourseID, CourseName, Credits)
+VALUES
+(201, 'Database Systems', 4),
+(202, 'Data Structures', 3),
+(203, 'Mathematics', 4);
+INSERT INTO Enrollment VALUES
+(1, 1001, 201),
+(2, 1001, 202),
+(3, 1002, 203),
+(4, 1003, 201);
 
--- Create Enrollment
-
--- Insert sample records
-
--- LEFT JOIN
-
--- RIGHT JOIN
+SELECT
+    Course.CourseID,
+    Course.CourseName,
+    Enrollment.EnrollmentID,
+    Enrollment.StudentID
+FROM Course
+LEFT JOIN Enrollment
+ON Course.CourseID = Enrollment.CourseID;
+SELECT
+    Course.CourseID,
+    Course.CourseName,
+    Enrollment.EnrollmentID,
+    Enrollment.StudentID
+FROM Course
+RIGHT JOIN Enrollment
+ON Course.CourseID = Enrollment.CourseID;
